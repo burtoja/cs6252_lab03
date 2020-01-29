@@ -4,7 +4,7 @@
 <head>
     <title>My Guitar Shop</title>
     <link rel="stylesheet" type="text/css"
-          href="/ex_solutions/ch05_ex1_sol/main.css">
+          href="/cs6252/Lab3AllenBurton/main.css">
 </head>
 
 <!-- the body section -->
