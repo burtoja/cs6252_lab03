@@ -89,6 +89,12 @@ form {
 .last_paragraph {
     margin-bottom: 2em;	
 }
+.copyright {
+	float: right;
+}
+.contact_link {
+	float: left;
+}
 /* the styles for the div tags that divide the page into sections */
 #left_column {
     float: left;
