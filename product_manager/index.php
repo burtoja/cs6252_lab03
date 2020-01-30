@@ -22,6 +22,7 @@ if ($action == 'list_products') {
     $categories = get_categories();
     $products = get_products_by_category($category_id);
     include('product_list.php');
+
 } else if ($action == 'delete_product') {
     $product_id = filter_input(INPUT_POST, 'product_id', 
             FILTER_VALIDATE_INT);
@@ -35,9 +36,11 @@ if ($action == 'list_products') {
         delete_product($product_id);
         header("Location: .?category_id=$category_id");
     }
+
 } else if ($action == 'show_add_form') {
     $categories = get_categories();
     include('product_add.php');    
+
 } else if ($action == 'add_product') {
     $category_id = filter_input(INPUT_POST, 'category_id', 
             FILTER_VALIDATE_INT);
@@ -52,12 +55,13 @@ if ($action == 'list_products') {
         add_product($category_id, $code, $name, $price);
         header("Location: .?category_id=$category_id");
     }
+
 } else if ($action == 'list_categories') {
     $categories = get_categories();
     include('category_list.php');
+
 } else if ($action == 'add_category') {
     $name = filter_input(INPUT_POST, 'name');
-
     // Validate inputs
     if ($name == NULL) {
         $error = "Invalid category name. Check name and try again.";
@@ -66,10 +70,21 @@ if ($action == 'list_products') {
         add_category($name);
         header('Location: .?action=list_categories');  // display the Category List page
     }
+
 } else if ($action == 'delete_category') {
     $category_id = filter_input(INPUT_POST, 'category_id', 
             FILTER_VALIDATE_INT);
     delete_category($category_id);
     header('Location: .?action=list_categories');      // display the Category List page
+
+} else if ($action == 'edit_product') {
+	$product_id = filter_input(INPUT_POST, 'product_id',
+			FILTER_VALIDATE_INT);
+	$category_id = filter_input(INPUT_POST, 'category_id',
+			FILTER_VALIDATE_INT);
+	$categories = get_categories();
+	$product = get_product($product_id);
+	include('edit_product_form.php');
+	//header("Location: edit_product_form.php?product_id=$product_id&category_id=$category_id");	//display the Edit Product Information page
 }
 ?>
