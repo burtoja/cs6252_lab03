@@ -49,7 +49,7 @@
                 <td>
                 	<form action="." method="post">
 	                    <input type="hidden" name="action"
-	                           value="edit_product">
+	                           value="show_edit_product_form">
 	                    <input type="hidden" name="product_id"
 	                           value="<?php echo $product['productID']; ?>">
 	                    <input type="hidden" name="category_id"
