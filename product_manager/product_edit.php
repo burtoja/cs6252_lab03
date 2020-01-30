@@ -18,18 +18,21 @@
 				name="code"
 				size="35" 
 				value="<?php echo $product['productCode']; ?>"> 
+		<span class="error_message"><?php echo $error_message_product_code?></span>
 		<br> 
 		<label>Name:</label>
 		<input 	type="text" 
 				name="name" 
 				size="35"
 				value="<?php echo $product['productName']; ?>"> 
+		<span class="error_message"><?php echo $error_message_product_name?></span>
 		<br> 
 		<label>List Price:</label> 
 		<input 	type="text" 
 				name="price" 
 				size="35"
 				value="<?php echo $product['listPrice']; ?>"> 
+		<span class="error_message"><?php echo $error_message_product_price?></span>
 		<br> 
 		<input	type="hidden" 
 				name="product_id" 

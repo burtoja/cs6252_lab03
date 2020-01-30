@@ -95,6 +95,10 @@ form {
 .contact_link {
 	float: left;
 }
+.error_message {
+	padding-left: 2.0em;
+	color: red;
+}
 /* the styles for the div tags that divide the page into sections */
 #left_column {
     float: left;

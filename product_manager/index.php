@@ -84,6 +84,9 @@ if ($action == 'list_products') {
 			FILTER_VALIDATE_INT);
 	$categories = get_categories();
 	$product = get_product($product_id);
+	$error_message_product_code = '';
+	$error_message_product_name = '';
+	$error_message_product_price = '';
 	include('product_edit.php');
 	
 } else if ($action == 'edit_product') {
@@ -94,13 +97,21 @@ if ($action == 'list_products') {
 	$code = filter_input(INPUT_POST, 'code');
 	$name = filter_input(INPUT_POST, 'name');
 	$price = filter_input(INPUT_POST, 'price');
-	if ($category_id == NULL || $category_id == FALSE || $code == NULL ||
-			$name == NULL || $price == NULL || $price == FALSE) {
-				$error = "Invalid product data. Check all fields and try again.";
-				include('../errors/error.php');
-			} else {
-				edit_product($product_id, $category_id, $code, $name, $price);
-				header("Location: .?category_id=$category_id");
-			}
+	include('../errors/validate_form_data.php');
+	$error_message_product_code = get_form_error_product_code($code);
+	$error_message_product_name = get_form_error_product_name($name);
+	$error_message_product_price = get_form_error_product_price($price);
+	if ($category_id == NULL || $category_id == FALSE) {
+		$error = "Invalid product data. Check all fields and try again.";
+		include('../errors/error.php');
+	} else if ($error_message_product_code == '' && $error_message_product_name == '' && $error_message_product_price == '') {
+		edit_product($product_id, $category_id, $code, $name, $price);
+		header("Location: .?category_id=$category_id");
+	} else {	
+		$action = 'show_edit_product_form';
+		$categories = get_categories();
+		$product = get_product($product_id);
+		include('product_edit.php');	
+	}
 }
 ?>
